@@ -27,6 +27,11 @@ tf_id=$TF_VERSION_ID
 src_host=https://github.com/tensorflow
 src_repo=tensorflow
 
+export CC=gcc
+export CXX=g++
+rm -rf ~/.cache/bazel/_bazel_br-hwaugh/*
+#bazel clean
+
 # Clone tensorflow and benchmarks
 rm -rf ${src_repo}
 git clone ${src_host}/${src_repo}.git
@@ -90,11 +95,15 @@ elif [[ $tf_id == '2' ]]; then
     bazel build $extra_args \
        --define=build_with_mkl_dnn_v1_only=true --define=build_with_mkl=true \
        --define=tensorflow_mkldnn_contraction_kernel=1 \
-       --copt="-mcpu=${CPU}" --copt="-flax-vector-conversions" --copt="-moutline-atomics" --copt="-O3" \
-       --cxxopt="-mcpu=${CPU}" --cxxopt="-flax-vector-conversions" --cxxopt="-moutline-atomics" --cxxopt="-O3" \
+       --copt="-mcpu=${CPU}" --copt="-flax-vector-conversions" --copt="-O3" \
+       --cxxopt="-mcpu=${CPU}" --cxxopt="-flax-vector-conversions" --cxxopt="-O3" \
        --linkopt="-L$ARMPL_DIR/lib -lamath -lm" --linkopt="-fopenmp" \
        --config=noaws --config=v$tf_id  --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" \
-       //tensorflow/tools/pip_package:build_pip_package
+       //tensorflow/tools/pip_package:build_pip_package <<'EOF'
+$VENV/bin/python3
+
+EOF
+
 else
     echo 'Invalid TensorFlow version when building tensorflow'
     exit 1
