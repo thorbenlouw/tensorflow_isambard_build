@@ -33,6 +33,7 @@ echo "oneDNN VERSION" $version
 git clone ${src_host}/${src_repo}.git
 cd ${src_repo}
 git checkout $version
+mkdir -p build install
 
 # Apply patch to add AArch64 flags, and OpenBLAS lib
 # This patch is for version 1.4+
@@ -40,7 +41,7 @@ patch -p1 < $PACKAGE_DIR/patches/oneDNN.patch
 
 cmake_options="-DCMAKE_BUILD_TYPE=release \
   -DDNNL_CPU_RUNTIME=OMP \
-  -DCMAKE_INSTALL_PREFIX=$PROD_DIR/$package/release"
+  -DCMAKE_INSTALL_PREFIX=$PACKAGE_DIR/$src_repo/install"
 
 cxx_flags="${BASE_CFLAGS} -O3"
 blas_flags=""
@@ -53,7 +54,6 @@ echo "CMake options: $cmake_options"
 echo "Compiler flags: $cxx_flags"
 echo "BLAS flags: $blas_libs $blas_flags"
 
-mkdir -p build
 cd build
 
 APPEND_SHARED_LIBS="$blas_libs" CXXFLAGS="$cxx_flags $blas_flags" \

@@ -32,5 +32,11 @@ wget https://github.com/bazelbuild/bazel/releases/download/$version/bazel-$versi
 unzip bazel-$version-dist.zip
 
 echo $JAVA_HOME
+module li
+unset CC
+unset CXX
 EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk" bash ./compile.sh
+export CC=cc
+export CXX=CC
+
 cd $PACKAGE_DIR
