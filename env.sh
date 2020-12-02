@@ -14,7 +14,7 @@ export CXX=CC
 
 export JAVA_HOME=~/installations/jdk1.8.0_251/
 
-export PACKAGE_DIR=~/installations/tensorflow_2.3
+export PACKAGE_DIR=$PWD
 
 export NP_MAKE=64
 export cpu="thunderx2t99"
