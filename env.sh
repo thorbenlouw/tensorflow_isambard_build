@@ -6,6 +6,7 @@ module swap PrgEnv-cray/6.0.6 PrgEnv-gnu/6.0.7
 module load cray-python/3.8.2.1
 module load cray-hdf5
 export ARMPL_DIR=/opt/allinea/20.0.0.0/armpl-20.0.0_ThunderX2CN99_SUSE-12_gcc_9.2.0_aarch64-linux/
+export LD_LIBRARY_PATH=$PACKAGE_DIR/oneDNN/install/lib:$LD_LIBRRAY_PATH
 export LD_LIBRARY_PATH=$ARMPL_DIR/lib/:$LD_LIBRARY_PATH
 export CRAYPE_LINK_TYPE=dynamic
 

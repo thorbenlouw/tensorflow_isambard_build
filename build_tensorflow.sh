@@ -29,7 +29,7 @@ src_repo=tensorflow
 
 export CC=gcc
 export CXX=g++
-#rm -rf ~/.cache/bazel/_bazel_br-hwaugh/*
+rm -rf ~/.cache/bazel/_bazel_br-hwaugh/*
 #bazel clean
 
 # Clone tensorflow and benchmarks
@@ -49,9 +49,9 @@ if [[ $tf_id == '1' ]]; then
    patch -p1 < ../tensorflow.patch
 elif [[ $tf_id == '2' ]]; then
    echo "Building tensorflow 2"
-   patch -p1 < ../oneDNN-opensource.patch
+   patch -p1 < $PACKAGE_DIR/patches/oneDNN-opensource.patch
    patch -p1 < $PACKAGE_DIR/patches/tf2_onednn_decoupling.patch
-   patch -p1 < ../tf2-armpl.patch
+   patch -p1 < $PACKAGE_DIR/patches/tf2-armpl.patch
    #patch -p1 < $PACKAGE_DIR/patches/oneDNN-header.patch (REMOVED IN 1.7 oneDNN update, see tool solutions)
    patch -p1 < $PACKAGE_DIR/patches/tensorflow2.patch
 else

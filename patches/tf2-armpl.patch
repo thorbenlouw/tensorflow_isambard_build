@@ -26,7 +26,7 @@ index 61438f4b7e..39ab4dc238 100755
 +    native.new_local_repository(
 +        name = "armpl",
 +        build_file = clean_dep("//third_party/ArmPL:ArmPL.BUILD"),
-+        path = '/opt/armpl/armpl_20.2.1_gcc-9.3'
++        path = '/opt/allinea/20.0.0.0/armpl-20.0.0_ThunderX2CN99_SUSE-12_arm-linux-compiler_20.0_aarch64-linux'
 +    )
 +
      tf_http_archive(
