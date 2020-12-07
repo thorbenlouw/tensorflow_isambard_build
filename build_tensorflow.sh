@@ -39,10 +39,6 @@ cd ${src_repo}
 git checkout $version -b $version
 
 
-if [[ $tf_id == '2' ]]; then
-   echo "Building tensorflow 2"
-   git checkout 00dbf072dbe69521ae2170a9fac4052187d187d6 -- tensorflow/core/kernels/mkl_matmul_op.cc
-fi
 
 # Apply path to allow use of newer Bazel build.
 if [[ $tf_id == '1' ]]; then
@@ -53,8 +49,10 @@ if [[ $tf_id == '1' ]]; then
    patch -p1 < ../tensorflow.patch
 elif [[ $tf_id == '2' ]]; then
    echo "Building tensorflow 2"
+   patch -p1 < ../oneDNN-opensource.patch
    patch -p1 < $PACKAGE_DIR/patches/tf2_onednn_decoupling.patch
-   patch -p1 < $PACKAGE_DIR/patches/oneDNN-header.patch
+   patch -p1 < ../tf2-armpl.patch
+   #patch -p1 < $PACKAGE_DIR/patches/oneDNN-header.patch (REMOVED IN 1.7 oneDNN update, see tool solutions)
    patch -p1 < $PACKAGE_DIR/patches/tensorflow2.patch
 else
    echo 'Invalid TensorFlow version when applying patches to the TensorFlow repository'
@@ -93,8 +91,7 @@ if [[ $tf_id == '1' ]]; then
       //tensorflow/tools/pip_package:build_pip_package
 elif [[ $tf_id == '2' ]]; then
     bazel build $extra_args \
-       --define=build_with_mkl_dnn_v1_only=true --define=build_with_mkl=true \
-       --define=tensorflow_mkldnn_contraction_kernel=1 \
+       --config=mkl_opensource_only \
        --copt="-mcpu=${CPU}" --copt="-flax-vector-conversions" --copt="-O3" \
        --cxxopt="-mcpu=${CPU}" --cxxopt="-flax-vector-conversions" --cxxopt="-O3" \
        --linkopt="-L$ARMPL_DIR/lib -lamath -lm" --linkopt="-fopenmp" \

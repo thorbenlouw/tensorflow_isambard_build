@@ -35,9 +35,6 @@ cd ${src_repo}
 git checkout $version
 mkdir -p build install
 
-# Apply patch to add AArch64 flags, and OpenBLAS lib
-# This patch is for version 1.4+
-patch -p1 < $PACKAGE_DIR/patches/oneDNN.patch
 
 cmake_options="-DCMAKE_BUILD_TYPE=release \
   -DDNNL_CPU_RUNTIME=OMP \

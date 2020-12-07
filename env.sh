@@ -32,7 +32,7 @@ export TF_VERSION="v2.3.0"
 
 export bazel_version=3.4.0
 export PATH=$PACKAGE_DIR/bazel/output:$PATH
-export ONEDNN_VERSION="v1.5.1"
+export ONEDNN_VERSION="v1.7"
 export onednn="armpl"
 
 export NUMPY_VERSION=1.17.5
@@ -50,3 +50,7 @@ export VENV=$PACKAGE_DIR/TF-$tf_version-gcc-env
 virtualenv --python=python3.8 $VENV
 source $VENV/bin/activate
 export PATH="$VENV/bin:$PATH"
+
+# Update patches
+sed -i 's~/opt/onednn/release/~'"${PACKAGE_DIR}"'/~' patches/tf2_onednn_decoupling.patch
+sed -i 's~/opt/armpl/armpl_20.2.1_gcc-9.3~/opt/allinea/20.0.0.0/armpl-20.0.0_ThunderX2CN99_SUSE-12_arm-linux-compiler_20.0_aarch64-linux~' patches/tf2-armpl.patch

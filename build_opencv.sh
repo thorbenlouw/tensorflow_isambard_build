@@ -22,6 +22,7 @@ set -u
 
 pip install --no-cache-dir keras_applications==1.0.8 --no-deps
 pip install --no-cache-dir keras_preprocessing==1.1.0 --no-deps
+#pip uninstall enum34 -y NEEDED??
 MPI_DIR=$MPICH_DIR pip install h5py
 pip install --no-cache-dir ck absl-py pycocotools
 
