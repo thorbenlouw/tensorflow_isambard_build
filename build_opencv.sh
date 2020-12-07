@@ -45,7 +45,7 @@ py_bin=$VENV/bin/python3
 py_site_packages=$VENV/TF-2-gcc-env/lib64/python3.8/site-packages/
 install_dir=$VENV
 
-cmake -DPYTHON3_EXECUTABLE=$py_bin -DCMAKE_C_COMPILER=CC -DBUILD_opencv_python2=NO -DBUILD_opencv_python3=YES -DPYTHON3_INCLUDE_DIR=$py_inc -DPYTHON3_PACKAGES_PATH=$py_site_packages \
+cmake -DPYTHON3_EXECUTABLE=$py_bin -DCMAKE_C_COMPILER=cc -DBUILD_opencv_python2=NO -DBUILD_opencv_python3=YES -DPYTHON3_INCLUDE_DIR=$py_inc -DPYTHON3_PACKAGES_PATH=$py_site_packages \
   -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$install_dir ..
 
 make -j $num_cpus 

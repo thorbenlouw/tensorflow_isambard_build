@@ -34,7 +34,7 @@ index 24446d846c..f9b1122ee9 100755
 -            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/oneapi-src/oneDNN/archive/v1.4.tar.gz",
 -            "https://github.com/oneapi-src/oneDNN/archive/v1.4.tar.gz",
 -        ],
-+        path = '/home/br-hwaugh/installations/tensorflow_2.3/oneDNN/install'
++        path = '/lustre/home/br-hwaugh/installations/TF2.3_NP1.17.5/oneDNN/install/'
      )
  
      tf_http_archive(

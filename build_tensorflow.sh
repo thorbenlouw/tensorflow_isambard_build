@@ -29,7 +29,7 @@ src_repo=tensorflow
 
 export CC=gcc
 export CXX=g++
-rm -rf ~/.cache/bazel/_bazel_br-hwaugh/*
+#rm -rf ~/.cache/bazel/_bazel_br-hwaugh/*
 #bazel clean
 
 # Clone tensorflow and benchmarks

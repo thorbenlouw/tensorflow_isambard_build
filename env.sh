@@ -35,8 +35,8 @@ export PATH=$PACKAGE_DIR/bazel/output:$PATH
 export ONEDNN_VERSION="v1.5.1"
 export onednn="armpl"
 
-#export NUMPY_VERSION=1.17.1
-export NUMPY_VERSION=1.19.4
+export NUMPY_VERSION=1.17.5
+#export NUMPY_VERSION=1.19.4
 export SCIPY_VERSION=1.4.1
 
 cd $PACKAGE_DIR
